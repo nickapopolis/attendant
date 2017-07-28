@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Attendant</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<div class='layout-header-container'>
+  		<%= render 'layouts/header' %>
+  	</div>
+  	<div class='layout-content-container'>
+  		<div class='notifications-container'>
+  			<p class="notice"><%= notice %></p>
+    		<p class="alert"><%= alert %></p>
+    	</div>
+
+    	<%= yield %>
+    </div>
+    <div class='layout-footer-container'>
+    	<%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>
