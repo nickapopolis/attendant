@@ -16,6 +16,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'
+gem 'react_on_rails', '8.0.0'
 
 #custom gems
 gem 'gsdk', '>= 1.0.0.4'
@@ -38,3 +39,5 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby
