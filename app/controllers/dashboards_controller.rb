@@ -1,10 +1,10 @@
 class DashboardsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_s3_direct_post, only: [:show]
-
+	#before_action :set_s3_direct_post, only: [:show]
 
 	def show
 		@record = Record.new()
+    @hello_world_props = { name: "Stranger" }
 	end
 
 	private
