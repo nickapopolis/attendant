@@ -16,5 +16,6 @@
 //= require jquery_ujs
 //= require gsdk
 //= require jquery-ui/widget
+//= require jquery-ui/widgets/droppable
 //= require jquery-fileupload
 //= require_tree .

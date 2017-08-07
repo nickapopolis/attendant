@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import RecordsList from './RecordsList.jsx';
 
 export default class Dashboard extends React.Component {
   static propTypes = {
@@ -33,17 +34,26 @@ export default class Dashboard extends React.Component {
            a Picture of a License Plate
         </div>
 
-        <input type='file' name='record[s3_url]' id='s3-upload-image-input'/>
+        <input type='file' name='record[s3_url]' id='s3-upload-image-input' className='hidden'/>
+        <RecordsList records={this.state.records}/>
       </div>
     );
   }
 
   componentDidMount() {
+    this.setupFileUpload()
+  }
+
+  setupFileUpload() {
+    var imageInput   = $('.upload-drop-zone')
     var fileInput    = $('#s3-upload-image-input')
     var progressBar  = $("<div class='bar'></div>")
     var barContainer = $("<div class='progress'></div>").append(progressBar)
 
-    fileInput.after(barContainer)
+    imageInput.click((e) => {
+      fileInput.click()
+    })
+
     fileInput.fileupload({
       fileInput:          fileInput,
       url:                this.props.s3_url,
@@ -60,6 +70,7 @@ export default class Dashboard extends React.Component {
             progressBar.css('width', progress + '%')
       },
       start: (e) => {
+        fileInput.after(barContainer)
         progressBar.
           css('background', 'green').
           css('display', 'block').
@@ -71,13 +82,42 @@ export default class Dashboard extends React.Component {
 
         // extract key and generate URL from response
         var key = $(data.jqXHR.responseXML).find("Key").text()
+        barContainer.fadeOut('slow')
 
-        console.log('done upload: ', data);
+        this.doCreateRecord(data)
       },
       fail: (e, data) => {
         progressBar.
           css("background", "red").
           text("Failed")
+      }
+    })
+  }
+
+  setupListView() {
+    //show loading view
+    //fetch list of records from server
+    //hide loading view
+    //instantiate and render recordsListView
+  }
+
+  doCreateRecord(data) {
+    $.ajax({
+      dataType: 'JSON',
+      method: 'POST',
+      url: '/records',
+      data: {
+        record:{
+          s3_url: $(data.jqXHR.responseXML).find('Location').text()
+        }
+      },
+      success: (record) => {
+        this.state.records.push(record);
+        this.forceUpdate();
+        console.log('created record: ', record);
+      },
+      fail: (error) => {
+        console.log('failed to create record: ', error) //todo error reporting
       }
     })
   }

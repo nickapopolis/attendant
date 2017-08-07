@@ -6,11 +6,12 @@ class RecordsController < ApplicationController
 	end
 
 	def create
-		@record = Record.new(record_params)
-		@record.status = :uploaded
-		@record.user = current_user
+		record = Record.new(record_params)
+		record.status = :uploaded
+		record.user = current_user
+		record.save
 
-		@record.save
+		render json: record
 	end
 
 	private

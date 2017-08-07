@@ -4,7 +4,7 @@ class DashboardsController < ApplicationController
 
 	def show
 		@record = Record.new
-		@records = current_user.records
+		@records = Record.all
     @react_props = { records: @records, user: current_user, s3_url: @s3_direct_post.url, s3_fields: @s3_direct_post.fields }
 	end
 
