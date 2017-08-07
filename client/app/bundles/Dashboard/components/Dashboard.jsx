@@ -17,8 +17,8 @@ export default class Dashboard extends React.Component {
   constructor(props, _railsContext) {
     super(props);
     this.state = {
-      user: this.props.user,
-      records: this.props.records
+      user: props.user,
+      records: props.records
     };
   }
 
@@ -35,7 +35,7 @@ export default class Dashboard extends React.Component {
         </div>
 
         <input type='file' name='record[s3_url]' id='s3-upload-image-input' className='hidden'/>
-        <RecordsList records={this.state.records}/>
+        <RecordsList records={this.props.records}/>
       </div>
     );
   }
@@ -60,14 +60,15 @@ export default class Dashboard extends React.Component {
       type:               'POST',
       autoUpload:         true,
       formData:           this.props.s3_fields,
+      acceptFileTypes:    /(\.|\/)(gif|jpe?g|png)$/i,
       paramName:          'file',
       dataType:           'XML',
       uploadTemplateId:   null,
       downloadTemplateId: null,
       replaceFileInput:   false,
       progressall: (e, data) => {
-            var progress = parseInt(data.loaded / data.total * 100, 10)
-            progressBar.css('width', progress + '%')
+        var progress = parseInt(data.loaded / data.total * 100, 10)
+        progressBar.css('width', progress + '%')
       },
       start: (e) => {
         fileInput.after(barContainer)
@@ -87,18 +88,9 @@ export default class Dashboard extends React.Component {
         this.doCreateRecord(data)
       },
       fail: (e, data) => {
-        progressBar.
-          css("background", "red").
-          text("Failed")
+        progressBar.css("background", "red").text("Failed")
       }
     })
-  }
-
-  setupListView() {
-    //show loading view
-    //fetch list of records from server
-    //hide loading view
-    //instantiate and render recordsListView
   }
 
   doCreateRecord(data) {
@@ -112,9 +104,9 @@ export default class Dashboard extends React.Component {
         }
       },
       success: (record) => {
-        this.state.records.push(record);
-        this.forceUpdate();
-        console.log('created record: ', record);
+        this.props.records.push(record);
+
+        this.forceUpdate(); //normally we dont need this, should have re-rendered on its own o.o
       },
       fail: (error) => {
         console.log('failed to create record: ', error) //todo error reporting

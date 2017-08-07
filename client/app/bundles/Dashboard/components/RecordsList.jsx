@@ -10,16 +10,18 @@ export default class RecordsList extends React.Component {
   constructor(props, _railsContext) {
     super(props);
     this.state = {
-      records: this.props.records
+      records: props.records
     };
   }
 
   render() {
     return (
       <div className='records-container'>
-      {this.state.records.map((record) =>
-        <RecordLineItem record={record} key={record.id}/>
-      )}
+      {
+        this.props.records.map((record) =>
+          <RecordLineItem record={record} key={record.id}/>
+        )
+      }
       </div>
     );
   }

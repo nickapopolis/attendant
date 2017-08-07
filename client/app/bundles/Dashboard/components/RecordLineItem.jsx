@@ -9,7 +9,7 @@ export default class RecordLineItem extends React.Component {
   constructor(props, _railsContext) {
     super(props);
     this.state = {
-      record: this.props.record
+      record: props.record
     };
   }
 
