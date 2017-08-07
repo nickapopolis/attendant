@@ -13,9 +13,7 @@ const { devBuild, manifest, webpackOutputPath, webpackPublicOutputDir } =
   webpackConfigLoader(configPath);
 
 const config = {
-
   context: resolve(__dirname),
-
   entry: {
     'webpack-bundle': [
       'es5-shim/es5-shim',
@@ -24,7 +22,6 @@ const config = {
       './app/bundles/Dashboard/startup/registration',
     ],
   },
-
   output: {
     // Name comes from the entry section.
     filename: '[name]-[hash].js',
@@ -33,11 +30,9 @@ const config = {
     publicPath: `/${webpackPublicOutputDir}`,
     path: webpackOutputPath,
   },
-
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
@@ -45,7 +40,6 @@ const config = {
     }),
     new ManifestPlugin({ fileName: manifest, writeToFileEmit: true }),
   ],
-
   module: {
     rules: [
       {
