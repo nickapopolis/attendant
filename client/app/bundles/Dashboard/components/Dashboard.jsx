@@ -49,6 +49,7 @@ export default class Dashboard extends React.Component {
     var fileInput    = $('#s3-upload-image-input')
     var progressBar  = $("<div class='bar'></div>")
     var barContainer = $("<div class='progress'></div>").append(progressBar)
+    fileInput.after(barContainer.css('display','none'))
 
     imageInput.click((e) => {
       fileInput.click()
@@ -71,7 +72,7 @@ export default class Dashboard extends React.Component {
         progressBar.css('width', progress + '%')
       },
       start: (e) => {
-        fileInput.after(barContainer)
+        barContainer.fadeIn('fast')
         progressBar.
           css('background', 'green').
           css('display', 'block').
@@ -79,12 +80,9 @@ export default class Dashboard extends React.Component {
           text("Loading...")
       },
       done: (e, data) => {
-        progressBar.text("Uploading done")
-
+        barContainer.fadeOut('slow')
         // extract key and generate URL from response
         var key = $(data.jqXHR.responseXML).find("Key").text()
-        barContainer.fadeOut('slow')
-
         this.doCreateRecord(data)
       },
       fail: (e, data) => {
@@ -103,10 +101,11 @@ export default class Dashboard extends React.Component {
           s3_url: $(data.jqXHR.responseXML).find('Location').text()
         }
       },
-      success: (record) => {
-        this.props.records.push(record);
-
+      success: (response) => {
+        this.props.records.push(response.record);
         this.forceUpdate(); //normally we dont need this, should have re-rendered on its own o.o
+
+        console.log('Processed data: ', response.data);
       },
       fail: (error) => {
         console.log('failed to create record: ', error) //todo error reporting

@@ -16,7 +16,7 @@ export default class RecordLineItem extends React.Component {
   render() {
     return (
       <div className='record-line-item'>
-        {this.state.record.s3_url}
+        {this.props.record.s3_url}
       </div>
     );
   }

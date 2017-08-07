@@ -18,6 +18,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'
 gem 'react_on_rails', '8.0.0'
 gem 'active_model_serializers'
+gem 'alpr_ruby'
 
 #custom gems
 gem 'gsdk', '>= 1.0.0.4'
