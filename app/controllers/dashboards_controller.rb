@@ -4,8 +4,12 @@ class DashboardsController < ApplicationController
 
 	def show
 		@record = Record.new
-		@records = current_user.records
+		@records = []
 
+		#refactor, whatever
+		current_user.records.each do |record|
+			@records.push RecordSerializer.new(record)
+		end
 		#todo: only bootstrap user from here, as this is the React entry point
 		# the rest of the data should be queried by the react views when needed.
 

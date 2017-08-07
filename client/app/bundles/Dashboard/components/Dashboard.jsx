@@ -101,11 +101,11 @@ export default class Dashboard extends React.Component {
           s3_url: $(data.jqXHR.responseXML).find('Location').text()
         }
       },
-      success: (response) => {
-        this.props.records.push(response.record);
+      success: (record) => {
+        this.props.records.push(record);
         this.forceUpdate(); //normally we dont need this, should have re-rendered on its own o.o
 
-        console.log('Processed data: ', response.data);
+        console.log('Processed data: ', record.analysis_data);
       },
       fail: (error) => {
         console.log('failed to create record: ', error) //todo error reporting

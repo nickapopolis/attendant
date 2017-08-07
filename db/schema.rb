@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728144320) do
+ActiveRecord::Schema.define(version: 20170807213151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20170728144320) do
     t.string "s3_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.json "analysis_data", default: "null"
+    t.datetime "analyzed_at"
+    t.string "plate"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 

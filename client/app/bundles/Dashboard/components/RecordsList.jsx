@@ -17,6 +17,12 @@ export default class RecordsList extends React.Component {
   render() {
     return (
       <div className='records-container'>
+      <h3>
+        My Plates
+      </h3>
+      <div className='records-header'>
+        Load: <a href=''>10</a> | Sort by: <a href=''>Newest</a>
+      </div>
       {
         this.props.records.map((record) =>
           <RecordLineItem record={record} key={record.id}/>

@@ -21,13 +21,14 @@ class RecordsController < ApplicationController
 		  country: 'ca'
 		}
 
-		data = ALPR.recognize(params: params)
+		analysis_data = ALPR.recognize(params: params)
+		unless analysis_data.plate.results.any?
+			return render json: { error: 'ALPR could not find a plate in this image', status: 400 }
+		end
 
-		# unless data.results.any?
-		# 	return render json: { error: 'ALPR could not find a plate in this image', status: 400 }
-		# end
+		record.update({analysis_data: analysis_data, analyzed_at: DateTime.now, plate: analysis_data.plate.results[0].plate})
 
-		render json: { record: record, data: data }
+		render json: record
 	end
 
 	private
