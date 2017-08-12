@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import RecordsList from './RecordsList.jsx';
+import React                from 'react';
+import PropTypes            from 'prop-types';
+import ActionCableProvider  from 'react-actioncable-provider'
+import ActionCable          from 'actioncable'
+import RecordsList          from './RecordsList.jsx';
+
+const cable = ActionCable.createConsumer('ws://localhost:5000/cable');
 
 export default class Dashboard extends React.Component {
   static propTypes = {
@@ -35,7 +39,9 @@ export default class Dashboard extends React.Component {
         </div>
 
         <input type='file' name='record[s3_url]' id='s3-upload-image-input' className='hidden'/>
-        <RecordsList records={this.props.records}/>
+        <ActionCableProvider cable={cable}>
+          <RecordsList records={this.props.records} user={this.props.user}/>
+        </ActionCableProvider>
       </div>
     );
   }
@@ -100,12 +106,6 @@ export default class Dashboard extends React.Component {
         record:{
           s3_url: $(data.jqXHR.responseXML).find('Location').text()
         }
-      },
-      success: (record) => {
-        this.props.records.push(record);
-        this.forceUpdate(); //normally we dont need this, should have re-rendered on its own o.o
-
-        console.log('Processed data: ', record.analysis_data);
       },
       fail: (error) => {
         console.log('failed to create record: ', error) //todo error reporting
