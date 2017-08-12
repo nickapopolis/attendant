@@ -3,7 +3,7 @@ class RecordSerializer < ActiveModel::Serializer
               :last_seen_location, :location, :confidence
 
   def analyzed_at
-    self.object.analyzed_at.strftime('%v %r')
+    self.object.analyzed_at.strftime('%v %r') rescue nil
   end
 
   def last_seen_records
@@ -11,7 +11,7 @@ class RecordSerializer < ActiveModel::Serializer
   end
 
   def last_seen_time
-    last_seen_records.any? ? records.first.analyzed_at.strftime('%v') : 'N/A'
+    last_seen_records.any? ? last_seen_records.first.analyzed_at.strftime('%v %r') : 'N/A' rescue nil
   end
 
   def last_seen_location
@@ -19,11 +19,11 @@ class RecordSerializer < ActiveModel::Serializer
   end
 
   def location
-    'N/A'
+    'coming soon'
   end
 
   def confidence
-    '%.1f' % self.object.analysis_data['plate']['results'][0]['confidence']
+    '%.1f' % self.object.analysis_data['plate']['results'][0]['confidence'] rescue nil
   end
 
 end
