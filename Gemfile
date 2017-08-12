@@ -19,6 +19,8 @@ gem 'jquery-fileupload-rails'
 gem 'react_on_rails', '8.0.0'
 gem 'active_model_serializers'
 gem 'alpr'
+gem 'exifr', :git => 'git://github.com/picuous/exifr.git'
+gem 'time_ago_in_words'
 
 #custom gems
 gem 'gsdk', '>= 1.0.0.4'

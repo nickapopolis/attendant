@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807213151) do
+ActiveRecord::Schema.define(version: 20170812215852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170807213151) do
     t.json "analysis_data", default: "null"
     t.datetime "analyzed_at"
     t.string "plate"
+    t.json "location"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
