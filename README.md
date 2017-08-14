@@ -1,16 +1,22 @@
 # Attendant:
-
-- take picture of vehincle in a parking lot -> automatically saves that picture with license plate and timestamp
-- next time i take a picture of the same vehicle, it will tell me that this vehicle has been in the parking lot for X amount of time
-
-- uses OpenALPR in order to process pictures
+- take picture of vehincle in a parking lot -> automatically saves picture with license plate, location, time
+- take picture of same vehicle, tells how long vehicle spent at that location.
+- asks if want to issue ticket, if active tickets are present
+- uses OpenALPR to process pictures
 
 # stack:
-- ruby on rails 5 - ActionCable, ActiveJob
-  - landing
-  - registration, sessions
+server - ruby on rails 5 - ActionCable, ActiveJob
+  - landing, registration, login
   - api
 
-- react - webpack, yarn, EC6
+client - react - webpack, yarn, EC6
   - everything after login
-  - dashboard
+
+mobile - react native
+  - login
+  - light version of app
+
+# resources:
+invitation only
+- trello: https://trello.com/b/hcuqOvEP/attendant-backlog
+- slack: https://kkattendant.slack.com
