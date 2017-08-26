@@ -4,3 +4,10 @@ services:
     image: postgres
     ports:
       - "5432:5432"
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "5001:5000"
+    environment:
+      - SERVICES=s3:5000
+      - DEFAULT_REGION=us-east-1
