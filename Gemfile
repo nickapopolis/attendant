@@ -32,6 +32,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
+  gem 'dotenv-rails'
+  gem 'minitest', '~> 5.10', '< 5.10.2'
 end
 
 group :development do

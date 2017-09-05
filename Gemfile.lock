@@ -106,6 +106,10 @@ GEM
     connection_pool (2.2.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     equalizer (0.0.11)
     erubi (1.6.1)
     erubis (2.7.0)
@@ -152,7 +156,7 @@ GEM
     mini_portile2 (2.1.0)
     mini_racer (0.1.12)
       libv8 (~> 5.9)
-    minitest (5.10.3)
+    minitest (5.10.1)
     multi_json (1.12.1)
     nio4r (2.1.0)
     nokogiri (1.7.1)
@@ -278,6 +282,7 @@ DEPENDENCIES
   capybara (~> 2.13.0)
   coffee-rails (~> 4.2)
   devise!
+  dotenv-rails
   erubis
   exifr!
   gsdk (>= 1.0.0.4)
@@ -287,6 +292,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   mini_racer
+  minitest (~> 5.10, < 5.10.2)
   pg
   puma (~> 3.7)
   rails (~> 5.1.0)
@@ -304,4 +310,4 @@ DEPENDENCIES
   webpacker_lite
 
 BUNDLED WITH
-   1.14.6
+   1.15.4

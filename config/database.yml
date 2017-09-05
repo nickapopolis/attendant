@@ -7,7 +7,7 @@
 default: &default
   adapter: postgresql
   role:
-  username:
+  username: <%= ENV['DB_USER'] %>
   password:
   pool: 5
   encoding: utf8
