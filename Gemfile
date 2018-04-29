@@ -21,18 +21,19 @@ gem 'active_model_serializers'
 gem 'alpr'
 gem 'exifr', :git => 'git://github.com/picuous/exifr.git'
 gem 'time_ago_in_words'
-
-#custom gems
 gem 'gsdk', '>= 1.0.0.4'
 gem 'devise', github: 'plataformatec/devise'
 gem 'erubis'
 gem 'alpr_ruby'
 gem 'aws-sdk-rails'
+gem 'tiddle'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13.0'
   gem 'selenium-webdriver'
+  gem 'dotenv-rails'
+  gem 'minitest', '~> 5.10', '< 5.10.2'
 end
 
 group :development do
