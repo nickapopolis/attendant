@@ -15,8 +15,3 @@ client - react - webpack, yarn, EC6
 mobile - react native
   - login
   - light version of app
-
-# resources:
-invitation only
-- trello: https://trello.com/b/hcuqOvEP/attendant-backlog
-- slack: https://kkattendant.slack.com
